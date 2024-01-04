@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#stagingArea, #cartDetails {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+#layoutContainer {
+    min-height: 200px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+}
+
+.cart {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #eef;
+}
+
+.part {
+    background-color: #dfd;
+    border: 1px solid #cfc;
+    margin: 2px;
+    padding: 2px;
+}
