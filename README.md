@@ -21,6 +21,7 @@ Advanced Filtering and Searching: Implementing features for filtering and search
 User Authentication and Authorization: Adding user login functionality for secure access and user-specific customization.
 Installation
 No installation is required. The system is accessible through a web browser.
+Must have Node.js installed (V1)
 
 Support
 For support, please contact [joshua.meesey@bwpackaging.com].
