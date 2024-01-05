@@ -1,0 +1,10 @@
+<parts>
+    <part>
+        <partNumber>test</partNumber>
+        <sequenceNumber>1</sequenceNumber>
+        <sectionNumber>2</sectionNumber>
+        <projectNumber>3</projectNumber>
+        <quantity>10</quantity>
+        <status>paint</status>
+    </part>
+</parts>

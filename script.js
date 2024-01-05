@@ -19,15 +19,18 @@ class Part {
         this.sectionNumber = sectionNumber;
         this.projectNumber = projectNumber;
         this.quantity = quantity;
-        this.status = status; // Status: 'ready', 'unready', or 'paint'
+        this.status = status;
     }
 
-    // Method to display part information
-    display() {
-        let partElement = document.createElement("li");
-        partElement.classList.add("part");
-        partElement.textContent = `Part Number: ${this.partNumber}, Status: ${this.status}`;
-        return partElement;
+    toXml() {
+        return `<part>
+                    <partNumber>${this.partNumber}</partNumber>
+                    <sequenceNumber>${this.sequenceNumber}</sequenceNumber>
+                    <sectionNumber>${this.sectionNumber}</sectionNumber>
+                    <projectNumber>${this.projectNumber}</projectNumber>
+                    <quantity>${this.quantity}</quantity>
+                    <status>${this.status}</status>
+                </part>`;
     }
 }
 
@@ -37,9 +40,38 @@ function addPart(sequenceNumber, sectionNumber, projectNumber) {
     let status = prompt("Enter Status (ready/unready/paint):");
 
     let newPart = new Part(partNumber, sequenceNumber, sectionNumber, projectNumber, quantity, status);
+    sendPartToServer(newPart);
+}
 
-    let partList = document.getElementById("partList");
-    partList.appendChild(newPart.display());
+function sendPartToServer(part) {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:8000/save-xml", true);
+    xhr.setRequestHeader("Content-Type", "application/xml");
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            alert("Part saved successfully.");
+        }
+    };
+
+    let xmlData = part.toXml();
+    xhr.send(xmlData);
+}
+
+function loadPartsFromServer() {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost:8000/load-xml", true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            let xmlResponse = xhr.responseXML;
+            displayParts(xmlResponse);
+        }
+    };
+    xhr.send();
+}
+
+function displayParts(xml) {
+    // Code to parse the XML and update the UI
 }
 
 // Assuming a selected cart's section and sequence number are stored
